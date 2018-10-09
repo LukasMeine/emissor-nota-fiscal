@@ -49,7 +49,7 @@ Nós não hospedamos uma live preview porque este projeto exige que seja passado
 
 - Composer install
 
-## Documentation
+## Documentação
 
 > Ainda não fizemos uma documentação da API. Inclusive, convidamos vocês a nos ajudar com isso 👌
 
