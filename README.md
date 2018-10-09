@@ -53,11 +53,11 @@ Nós não hospedamos uma live preview porque este projeto exige que seja passado
 
 > Ainda não fizemos uma documentação da API. Inclusive, convidamos vocês a nos ajudar com isso 👌
 
-## Built With
+## Construido com
 
 ![citaralab](https://avatars1.githubusercontent.com/u/1221505?s=200&v=4)
 
 *O framework Phalcon PHP*
 
-E muito ❤ by Citara Labs
-"
+E muito ❤ por Citara Labs
+
