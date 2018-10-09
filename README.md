@@ -1,9 +1,8 @@
 # Emissor de notas fiscais de propósito generico
 
-![citaralab](https://user-images.githubusercontent.com/20716798/28749145-62359dba-7494-11e7-8fdf-a2e10f07dd03.png)
+API de emissão de notas fiscais construída em cima da sped-nfe. Feita com Phalcon PHP para oferecer altíssima performance 🚀🚀
 
-> API de emissão de notas fiscais. 
-
+![emissor](https://user-images.githubusercontent.com/20716798/46682482-0902b100-cbc4-11e8-9301-7869c012d617.gif)
 
 
 ## Getting Started
