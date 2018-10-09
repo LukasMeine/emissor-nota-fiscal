@@ -1,0 +1,40 @@
+{
+    "name": "phalcon/vokuro",
+    "description": "This is a sample application for the Phalcon PHP Framework",
+    "version": "1.2.0",
+    "keywords": [
+        "phalcon",
+        "framework",
+        "sample app",
+        "vokuro"
+    ],
+    "type": "library",
+    "license": "BSD-3",
+    "homepage": "https://www.phalconphp.com",
+    "authors" : [
+        {
+            "name" : "Andres Gutierrez",
+            "email" : "andres@phalconphp.com"
+        },
+        {
+            "name" : "Mark Garrett",
+            "email" : "mark@moderndeveloperllc.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5",
+        "ext-phalcon": "~3.0",
+        "swiftmailer/swiftmailer": "^5.4",
+        "aws/aws-sdk-php": "~3.0",
+        "nfephp-org/sped-nfe": "^5.0",
+		"nfephp-org/nfephp": "^4.0"
+
+    },
+    "autoload": {
+    "nfephp-org/nfephp": {"Vokuro\\Controllers": "./vendor"}
+},
+    
+    "require-dev": {
+        "phalcon/dd": "~1.1.0"
+    }
+}
