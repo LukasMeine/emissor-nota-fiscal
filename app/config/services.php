@@ -10,9 +10,6 @@ use Phalcon\Session\Adapter\Files as SessionAdapter;
 use Phalcon\Flash\Direct as Flash;
 use Phalcon\Logger\Adapter\File as FileLogger;
 use Phalcon\Logger\Formatter\Line as FormatterLine;
-use Vokuro\Auth\Auth;
-use Vokuro\Acl\Acl;
-use Vokuro\Mail\Mail;
 
 /**
  * Register the global configuration as config
@@ -67,18 +64,6 @@ $di->set('view', function () {
     return $view;
 }, true);
 
-/**
- * Database connection is created based in the parameters defined in the configuration file
- */
-$di->set('db', function () {
-    $config = $this->getConfig();
-    return new DbAdapter([
-        'host' => $config->database->host,
-        'username' => $config->database->username,
-        'password' => $config->database->password,
-        'dbname' => $config->database->dbname
-    ]);
-});
 
 /**
  * If the configuration specify the use of metadata adapter use it or use memory otherwise
@@ -115,7 +100,7 @@ $di->set('crypt', function () {
  */
 $di->set('dispatcher', function () {
     $dispatcher = new Dispatcher();
-    $dispatcher->setDefaultNamespace('Vokuro\Controllers');
+    $dispatcher->setDefaultNamespace('NotaFiscal\Controllers');
     return $dispatcher;
 });
 
@@ -138,41 +123,7 @@ $di->set('flash', function () {
     ]);
 });
 
-/**
- * Custom authentication component
- */
-$di->set('auth', function () {
-    return new Auth();
-});
 
-/**
- * Mail service uses AmazonSES
- */
-$di->set('mail', function () {
-    return new Mail();
-});
-
-/**
- * Setup the private resources, if any, for performance optimization of the ACL.  
- */
-$di->setShared('AclResources', function() {
-    $pr = [];
-    if (is_readable(APP_PATH . '/config/privateResources.php')) {
-        $pr = include APP_PATH . '/config/privateResources.php';
-    }
-    return $pr;
-});
-
-/**
- * Access Control List
- * Reads privateResource as an array from the config object.
- */
-$di->set('acl', function () {
-    $acl = new Acl();
-    $pr = $this->getShared('AclResources')->privateResources->toArray();
-    $acl->addPrivateResources($pr);
-    return $acl;
-});
 
 /**
  * Logger service

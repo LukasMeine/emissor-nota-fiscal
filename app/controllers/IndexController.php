@@ -1,5 +1,5 @@
 <?php
-namespace Vokuro\Controllers;
+namespace NotaFiscal\Controllers;
 
 require_once('../vendor/autoload.php');
 session_start();
