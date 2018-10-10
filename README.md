@@ -13,7 +13,7 @@ Para tornar isso realidade, nós construimos uma API de exemplo utilizando o pro
 
 Assim que você instalar o projeto, ele estará acessível na porta 80 (localhost) e você verá alguns parâmetros por lá, como CNPJ, Inscrição estadual, Razão social e certificado digital. Ainda existem MUITOS outros parâmetros que precisam ser configurados, mas nós não fizemos front end pra isso. Inclusive, convidamos vocês a contribuirem nisso ✌ 
 
-Para configurar os outros parâmetros, entre no arquivo [app/controllers/IndexController.php](https://github.com/citaralabs/emissor-nota-fiscal/blob/master/app/controllers/IndexController.php) e edite os parâmetros que for necessário. Você encontrará uma breve explicação sobre a maioria deles em forma de comentário, por exemplo:
+Para configurar os outros parâmetros, entre no arquivo [app/controllers/EmiteController.php](https://github.com/citaralabs/emissor-nota-fiscal/blob/master/app/controllers/EmiteController.php) e edite os parâmetros que for necessário. Você encontrará uma breve explicação sobre a maioria deles em forma de comentário, por exemplo:
 
 ```
 $std->cEAN = 'SEM GTIN'; // GTIN do produto, antigo código ean ou código de barras // preencher com cfop, caso se trate de itens não relacionados com mercadorias / produtos e que o contribuinte não possua codificação própria. Formato "CFOP9999"
