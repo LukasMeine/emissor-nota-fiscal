@@ -2,7 +2,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/vendifier-nfe/public/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/vendifier-nfe/public/assets/styles.css">
     <title>Emissor de nota fiscal</title>
 </head>
 
