@@ -297,7 +297,6 @@ class EmiteController extends ControllerBase
             $std = $st->toStd($xmlResp);
             if ($std->cStat=='103') {
                 //lote enviado mas ainda não foi precessado pela SEFAZ;
-       
             }
             if ($std->cStat=='105') {
                 //lote em processamento tente novamente mais tarde
