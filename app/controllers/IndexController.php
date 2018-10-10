@@ -16,18 +16,17 @@ use \stdClass as stdObject;
 class IndexController extends ControllerBase
 {
     private function getTools()
-    {    
+    {
         $certificadoDigital = file_get_contents($_FILES["certificado"]["tmp_name"]);
         return new tools($this->gera_json(), certificate::readPfx($certificadoDigital, $_POST['senha']));
     }
 
-    public function indexAction(){
-
+    public function indexAction()
+    {
     }
 
     public function emiteAction()
     {
-        
         try {
             $idLote = str_pad(100, 15, '0', STR_PAD_LEFT); // Identificador do lote
 
@@ -48,7 +47,7 @@ class IndexController extends ControllerBase
 
                 //Só imprimimos a DANFE caso ela esteja autorizada.
                 $this->pdf_nota($this->xmlAssinado());
-            }else{
+            } else {
                 //Caso contrário, imprimimos detalhes sobre a rejeição
                 print_r($recibo);
             }
@@ -60,7 +59,6 @@ class IndexController extends ControllerBase
 
     private function get_xml()
     {
-
         $nfe = new Make();
         $std = new stdObject();
 
@@ -258,7 +256,6 @@ class IndexController extends ControllerBase
         $nfe->tagdetPag($std);
 
         return $nfe->getXML();
-
     }
 
     private function gera_json()
@@ -299,51 +296,46 @@ class IndexController extends ControllerBase
     {
         try {
             $xmlResp = $this->getTools()->sefazConsultaRecibo($recibo);
-
-
             $st = new standart();
             $std = $st->toStd($xmlResp);
-
             if ($std->cStat=='103') {
                 //lote enviado
                 //Lote ainda não foi precessado pela SEFAZ;
             }
             if ($std->cStat=='105') {
-                //lote em processamento
-                //tente novamente mais tarde
+                //lote em processamento tente novamente mais tarde
             }
 
             if ($std->cStat=='104') {
                 //lote processado (tudo ok)
-        if ($std->protNFe->infProt->cStat=='100') {
-                //Autorizado o uso da NF-e
-            $return = ["situacao"=>"autorizada",
+                if ($std->protNFe->infProt->cStat=='100') {
+                    //Autorizado o uso da NF-e
+                    $return = ["situacao"=>"autorizada",
                        "numeroProtocolo"=>$std->protNFe->infProt->nProt,
                        "xmlProtocolo"=>$xmlResp];
-        } elseif (in_array($std->protNFe->infProt->cStat, ["302"])) {
-                //DENEGADAS
-            $return = ["situacao"=>"denegada",
+                } elseif (in_array($std->protNFe->infProt->cStat, ["302"])) {
+                    //DENEGADAS
+                    $return = ["situacao"=>"denegada",
                        "numeroProtocolo"=>$std->protNFe->infProt->nProt,
                        "motivo"=>$std->protNFe->infProt->xMotivo,
                        "cstat"=>$std->protNFe->infProt->cStat,
                        "xmlProtocolo"=>$xmlResp];
-        } else {
-                //não autorizada (rejeição)
-            $return = ["situacao"=>"rejeitada",
+                } else {
+                    //não autorizada (rejeição)
+                    $return = ["situacao"=>"rejeitada",
                        "motivo"=>$std->protNFe->infProt->xMotivo,
                        "cstat"=>$std->protNFe->infProt->cStat];
-        }
+                }
             }//104
-    else {
-        //outros erros possíveis
-        $return = ["situacao"=>"rejeitada",
+            else {
+                //outros erros possíveis
+                $return = ["situacao"=>"rejeitada",
                    "motivo"=>$std->xMotivo,
                    "cstat"=>$std->cStat];
-    }
+            }
 
             return $return;
         } catch (\Exception $e) {
-
             exit($e->getMessage());
         }
     }
