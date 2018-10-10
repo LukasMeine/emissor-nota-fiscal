@@ -10,9 +10,9 @@ use Phalcon\Session\Adapter\Files as SessionAdapter;
 use Phalcon\Flash\Direct as Flash;
 use Phalcon\Logger\Adapter\File as FileLogger;
 use Phalcon\Logger\Formatter\Line as FormatterLine;
-use Vokuro\Auth\Auth;
-use Vokuro\Acl\Acl;
-use Vokuro\Mail\Mail;
+use NotaFiscal\Auth\Auth;
+use NotaFiscal\Acl\Acl;
+use NotaFiscal\Mail\Mail;
 
 /**
  * Register the global configuration as config
