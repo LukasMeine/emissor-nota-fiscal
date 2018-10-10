@@ -21,10 +21,6 @@ class IndexController extends ControllerBase
         return new tools($this->gera_json(), certificate::readPfx($certificadoDigital, $_POST['senha']));
     }
 
-    public function indexAction(){
-
-    }
-
     public function emiteAction()
     {
         
