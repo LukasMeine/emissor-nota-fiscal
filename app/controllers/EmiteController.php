@@ -291,7 +291,8 @@ class EmiteController extends ControllerBase
     private function consulta_recibo($recibo = null)
     {
         try {
-            $xmlResp = $this->getTools()->sefazConsultaRecibo($recibo);
+            $tools = $this->getTools();
+            $xmlResp = $tools->sefazConsultaRecibo($recibo);
             $st = new standart();
             $std = $st->toStd($xmlResp);
             if ($std->cStat=='103') {
