@@ -1,5 +1,5 @@
 <?php
-namespace Vokuro\Controllers;
+namespace NotaFiscal\Controllers;
 
 use Phalcon\Mvc\Controller;
 use Phalcon\Mvc\Dispatcher;
