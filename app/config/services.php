@@ -151,16 +151,6 @@ $di->setShared('AclResources', function() {
     return $pr;
 });
 
-/**
- * Access Control List
- * Reads privateResource as an array from the config object.
- */
-$di->set('acl', function () {
-    $acl = new Acl();
-    $pr = $this->getShared('AclResources')->privateResources->toArray();
-    $acl->addPrivateResources($pr);
-    return $acl;
-});
 
 /**
  * Logger service
