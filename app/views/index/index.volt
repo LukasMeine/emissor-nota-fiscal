@@ -2,14 +2,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/vendifier-nfe/public/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/vendifier-nfe/public/assets/styles.css">
     <title>Emissor de nota fiscal</title>
 </head>
 
 <body>
     <div class="container" id="advanced-search-form">
         <h2>Emissor de nota fiscal</h2>
-        <form action="index/emite" method="POST" target="_blank" enctype="multipart/form-data">
+        <form action="emite" method="POST" target="_blank" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="first-name">Razão Social</label>
                 <input type="text" class="form-control" placeholder="Razão Social" name="razao" id="razao">
