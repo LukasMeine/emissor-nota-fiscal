@@ -123,30 +123,6 @@ $di->set('flash', function () {
     ]);
 });
 
-/**
- * Custom authentication component
- */
-$di->set('auth', function () {
-    return new Auth();
-});
-
-/**
- * Mail service uses AmazonSES
- */
-$di->set('mail', function () {
-    return new Mail();
-});
-
-/**
- * Setup the private resources, if any, for performance optimization of the ACL.  
- */
-$di->setShared('AclResources', function() {
-    $pr = [];
-    if (is_readable(APP_PATH . '/config/privateResources.php')) {
-        $pr = include APP_PATH . '/config/privateResources.php';
-    }
-    return $pr;
-});
 
 
 /**
