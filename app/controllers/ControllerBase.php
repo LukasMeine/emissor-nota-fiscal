@@ -21,12 +21,8 @@ class ControllerBase extends Controller
      */
     public function beforeExecuteRoute(Dispatcher $dispatcher)
     {
+        //make your own validations here
         $controllerName = $dispatcher->getControllerName();
-
-        // Only check permissions on private controllers
-        if ($this->acl->isPrivate($controllerName)) {
-            //make your own validations here
-            return true;
-        }
+        return true;
     }
 }
