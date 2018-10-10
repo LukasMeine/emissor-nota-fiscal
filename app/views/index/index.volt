@@ -9,7 +9,7 @@
 <body>
     <div class="container" id="advanced-search-form">
         <h2>Emissor de nota fiscal</h2>
-        <form action="index/emite" method="POST" target="_blank" enctype="multipart/form-data">
+        <form action="emite" method="POST" target="_blank" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="first-name">Razão Social</label>
                 <input type="text" class="form-control" placeholder="Razão Social" name="razao" id="razao">
