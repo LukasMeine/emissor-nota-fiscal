@@ -299,8 +299,8 @@ class IndexController extends ControllerBase
             $st = new standart();
             $std = $st->toStd($xmlResp);
             if ($std->cStat=='103') {
-                //lote enviado
-                //Lote ainda não foi precessado pela SEFAZ;
+                //lote enviado mas ainda não foi precessado pela SEFAZ;
+       
             }
             if ($std->cStat=='105') {
                 //lote em processamento tente novamente mais tarde
