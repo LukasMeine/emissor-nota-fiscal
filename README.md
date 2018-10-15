@@ -15,14 +15,8 @@ Assim que você instalar o projeto, ele estará acessível na porta 80 (localhos
 
 Para configurar os outros parâmetros, entre no arquivo [app/controllers/EmiteController.php](https://github.com/citaralabs/emissor-nota-fiscal/blob/master/app/controllers/EmiteController.php) e edite os parâmetros que for necessário. Você encontrará uma breve explicação sobre a maioria deles em forma de comentário, por exemplo:
 
-```
-$std->cEAN = 'SEM GTIN'; // GTIN do produto, antigo código ean ou código de barras // preencher com cfop, caso se trate de itens não relacionados com mercadorias / produtos e que o contribuinte não possua codificação própria. Formato "CFOP9999"
-$std->cEANTrib = 'SEM GTIN'; // gtin da unidade tributável, antigo código ean ou código de barras
-$std->cProd = '0001'; // código do produto ou serviço
-$std->xProd = 'Produto teste'; // descrição do produto ou serviço
-$std->NCM = '84669330'; // códigio ncm com 8 dígitos ou 2 digitos (gênero) / codigo ncm (8 posicoes) informar o genero (posição do capitulo do NCM) quando a operação não for de comércio exterior (importação / exportação) ou o produto não seja tributado pelo IPI. Em caso de serviço informar o código 99 (v2.0)
-$std->CFOP = '5102'; // código fiscal de operações e prestações / utilizar tabela de CFOP.
-```
+![carbon](https://user-images.githubusercontent.com/20716798/46951406-481a8180-d05e-11e8-8425-c1d7644dccc5.png)
+
 
 ## Live preview
 
