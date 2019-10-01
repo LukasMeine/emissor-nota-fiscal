@@ -66,7 +66,7 @@
             </div>
             <div class="form-group">
                 <label for="country">CPF destinatário</label>
-                <input type="text" class="form-control" name="cpf_destinatario" placeholder="CPF" id="cpf">
+                <input type="text" class="form-control" name="cpf_destinatario" placeholder="CPF" id="cpf_destinatario">
             </div>
             <div class="form-group">
                 <label for="first-name">Endereço destinatário</label>
