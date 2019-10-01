@@ -64,7 +64,7 @@ class EmiteController extends ControllerBase
         $nfe->taginfNFe($std);
 
         $std = new stdObject();
-        $std->cUF = 53; //coloque um código real e válido
+        $std->cUF = substr($_POST['ibge_cidade'],0,2); //codigo ibge da UF será sempre os 2 primeiros digitos do ibge da cidade
         $std->cNF = '80070008'; //código numérico que compõe a chave de acesso
         $std->natOp = 'VENDA'; // descrição da natureza da operação
         $std->mod = 55; // código do modelo do documento fiscal
@@ -74,16 +74,16 @@ class EmiteController extends ControllerBase
         $std->dhSaiEnt = '2018-09-17T20:48:00-02:00'; // data de saída ou da entrada da mercadoria / produto
         $std->tpNF = 1; // tipo de operação
         $std->idDest = 1;
-        $std->cMunFG = 5300108; //Código de município precisa ser válido
+        $std->cMunFG = $_POST['ibge_cidade']; //Código de município precisa ser válido
         $std->tpImp = 1; // formato de impressão do DANFE
         $std->tpEmis = 1; // se informada a tag de tpemis=1 dhcont e xjust não devem ser informados, se informada dhcont e xjust devem ser informados.
-        $std->cDV = 2; // digito verificado da chave de acesso da nf-e
+        $std->cDV = 2; // digito verificado da chave de acesso da nf-e [TODO: precisa ser calculado corretamente]
         $std->tpAmb = 2; // Se deixar o tpAmb como 2 você emitirá a nota em ambiente de homologação(teste) e as notas fiscais aqui não tem valor fiscal
         $std->finNFe = 1; // finalidade de emissão da NF-e
-        $std->indFinal = 0; // ?
-        $std->indPres = 0; // ?
-        $std->procEmi = '0'; // processo de emissão da NF-e
-        $std->verProc = 1; // versão do processo de emissão da nf-e
+        $std->indFinal = 1; // Indica se esta NF-e foi emitida para Consumidor Final ou não ( por exemplo) para Revenda. 1 = Consumidor final
+        $std->indPres = 2; // Indiica se o destinatario da NF-e estava presente na emissão. 2 = Não presencial, pela internet
+        $std->procEmi = 0; // processo de emissão da NF-e. 0 = emissão de NF-e com aplicativo do contribuinte
+        $std->verProc = '1.0'; // versão do processo de emissão da nf-e
         $nfe->tagide($std);
 
         $std = new stdObject();
@@ -94,32 +94,31 @@ class EmiteController extends ControllerBase
         $nfe->tagemit($std);
 
         $std = new stdObject();
-        $std->xLgr = "Rua Teste"; // logradouro da empresa
-        $std->nro = '203'; // número
-        $std->xBairro = 'Centro'; // bairro
-        $std->cMun = 5300108; //Código de município precisa ser válido e igual o  cMunFG
-        $std->xMun = 'Bauru'; // nome do municipio
-        $std->UF = 'DF'; // sigla da uf
-        $std->CEP = '80045190'; // código do cep
+        $std->xLgr = $_POST['endereco']; // logradouro da empresa
+        $std->nro = $_POST['endereco_numero']; // número
+        $std->xBairro = $_POST['bairro']; // bairro
+        $std->cMun = $_POST['ibge_cidade']; //Código de município precisa ser válido e igual o  cMunFG
+        $std->xMun = $_POST['cidade']; // nome do municipio
+        $std->UF = 'DF'; // sigla da uf [TODO: Function que recebe um código IBGE de UF e retorna a sigla da mesma]
+        $std->CEP = $_POST['cep']; // código do cep
         $std->cPais = '1058'; // código do país
         $std->xPais = 'BRASIL'; // nome do país
         $nfe->tagenderEmit($std);
 
         $std = new stdObject();
-        $std->xNome = 'Empresa destinatário teste'; // razão social ou nome do destinatário
-        $std->indIEDest = 2; // ???
-        $std->IE = 'ISENTO'; //IE ??? campo de informação obrigatória nos casos de emissão própria (procEmi = 0,2 ou 3). A IE deve ser informada apenas com algarismos para destinatários contribuientes do ICMS, sem caracteres de formatação (ponto,barra,hifen, etc.); O literal "ISENTO" deve ser informado apenas para contribuintes do ICMS que são isentos de inscrição no cadastro de contribuintes do ICMS e estejam emitindo NF-e avulsa;
-        $std->CNPJ = '15236260000138'; // cnpj do destinatário ou cpf
+        $std->xNome = $_POST['destinatario']; // razão social ou nome do destinatário
+        $std->indIEDest = 9; // indica se é contribuinte ou não. PF sao sempre não contribuintes e PJ pode ser ambos. 9 = Não contribuinte
+        $std->CPF = $_POST['cpf_destinatario']; // cpf do destinatário
         $nfe->tagdest($std);
 
         $std = new stdObject();
-        $std->xLgr = "Rua Teste"; // logradouro da empresa destinatario
-        $std->nro = '203'; // numero da empresa destinatario
-        $std->xBairro = 'Centro'; // bairro da empresa destinatario
-        $std->cMun = '5300108'; // codigo do municipio
-        $std->xMun = 'Bauru'; // nome do municipio
-        $std->UF = 'DF'; // sigla da uf
-        $std->CEP = '80045190'; // código do cep
+        $std->xLgr = $_POST['endereco_destinatario']; // logradouro da empresa destinatario
+        $std->nro = $_POST['numero_endereco_destinatario']; // numero da empresa destinatario
+        $std->xBairro = $_POST['bairro_destinatario']; // bairro da empresa destinatario
+        $std->cMun = $_POST['ibge_cidade_destinatario']; // codigo do municipio
+        $std->xMun = $_POST['cidade_destinatario']; // nome do municipio
+        $std->UF = 'DF'; // sigla da uf [TODO: Function que receber um código IBGE de UF e retorna sigla da mesma]
+        $std->CEP = $_POST['cep_destinatario']; // código do cep
         $std->cPais = '1058'; // código do país
         $std->xPais = 'BRASIL'; // nome do país
         $nfe->tagenderDest($std);
