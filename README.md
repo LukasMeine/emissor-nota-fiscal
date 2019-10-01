@@ -53,5 +53,5 @@ Nós não hospedamos uma live preview porque este projeto exige que seja passado
 
 *O framework Phalcon PHP*
 
-E muito ❤ por Citara Labs
+E muito ❤ por Lucas Meine
 
