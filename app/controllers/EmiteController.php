@@ -293,6 +293,41 @@ class EmiteController extends ControllerBase
         return $nfe->getXML();
     }
 
+    private function compoeChaveAcesso43($cUF, $ano, $mes, $cnpj, $serie, $numero, $tpEmi, $cNF )
+    {
+        return $cUF . $ano . $mes . $cnpj . "55" . $serie . $numero . $tpEmi . $cNF;
+    }
+
+    private function calculaDV($cUF, $ano, $mes, $cnpj, $serie, $numero, $tpEmi, $cNF)
+    {
+        return calculaDV(compoeChaveAcesso43($cUF, $ano, $mes, $cnpj, $serie, $numero, $tpEmi, $cNF));
+    }
+
+    private function calculaDV($chave43)
+    {
+        $mult = array(2, 3, 4, 5, 6, 7, 8, 9);
+        $count = 42;
+        $soma = 0;
+        while ($count >= 0) 
+        {
+            for ($i = 0; $i < count($mult) && $count >= 0; $i++) 
+            {
+                $num = (int) substr($chave43, $count, 1);
+                $peso = (int) $mult[$i];
+                $soma += $num * $peso;
+                $count--;
+            }
+        }
+        $resto = $soma % 11;
+        
+        if ($resto == '0' || $resto == '1') 
+            $cDV = 0;
+        else 
+            $cDV = 11 - $resto;
+        
+        return (string) $cDV;
+    }
+
     private function gera_json()
     {
         $config = [
