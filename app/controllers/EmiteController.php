@@ -109,7 +109,7 @@ class EmiteController extends ControllerBase
         $std->mod = 55; // código do modelo do documento fiscal
         $std->serie = 1; // série do documento fiscal
         $std->nNF = $_POST['numero']; // número do documento fiscal
-        $std->dhEmi = date("Y-m-d\TH:i:sP");; // data de emissão do documento fiscal
+        $std->dhEmi = date("c");; // data de emissão do documento fiscal
         $std->dhSaiEnt = date("Y-m-d\TH:i:sP");; // data de saída ou da entrada da mercadoria / produto
         $std->tpNF = 1; // tipo de operação
         $std->idDest = 1;
