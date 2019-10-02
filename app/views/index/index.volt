@@ -91,7 +91,59 @@
             <div class="form-group">
                 <label for="first-name">CEP destinatário</label>
                 <input type="number" class="form-control" placeholder="CEP destinatário" name="cep_destinatario" id="cep_destinatario">
-            </div>            
+            </div>       
+            
+            <!-- Campos do produto-->
+            <div class="form-group">
+                <label for="first-name">Código Produto</label>
+                <input type="text" class="form-control" placeholder="Código do Produto" name="cod_produto" id="cod_produto">
+            </div>   
+            <div class="form-group">
+                <label for="first-name">Nome Produto</label>
+                <input type="text" class="form-control" placeholder="Nome do Produto" name="nome_produto" id="nome_produto">
+            </div>   
+            <div class="form-group">
+                <label for="first-name">NCM</label>
+                <input type="text" class="form-control" placeholder="NCM" name="ncm" id="ncm">
+            </div>   
+            <div class="form-group">
+                <label for="first-name">Unidade Medida</label>
+                <input type="text" class="form-control" placeholder="Unidade de Medida" name="unidade_medida" id="unidade_medida">
+            </div>   
+            <div class="form-group">
+                <label for="first-name">Quantidade</label>
+                <input type="text" class="form-control" placeholder="Quantidade" name="quantidade" id="quantidade">
+            </div>   
+            <div class="form-group">
+                <label for="first-name">Valor Unitário</label>
+                <input type="text" class="form-control" placeholder="Valor unitário" name="valor_unitario" id="valor_unitario">
+            </div>   
+            <div class="form-group">
+                <label for="first-name">CST</label>
+                <input type="text" class="form-control" placeholder="CST" name="cst" id="cst">
+            </div>   
+            <div class="form-group">
+                <label for="first-name">CFOP</label>
+                <input type="text" class="form-control" placeholder="CFOP" name="cfop" id="cfop">
+            </div>   
+
+            <div class="form-group">
+                <label for="first-name">Aliquota ICMS (%)</label>
+                <input type="text" class="form-control" placeholder="Aliquota ICMS" name="aliq_icms" id="aliq_icms">
+            </div>  
+            <div class="form-group">
+                <label for="first-name">Aliquota PIS (%)</label>
+                <input type="text" class="form-control" placeholder="Aliquota PIS" name="aliq_pis" id="aliq_pis">
+            </div>  
+            <div class="form-group">
+                <label for="first-name">Aliquota COFINS (%)</label>
+                <input type="text" class="form-control" placeholder="Aliquota COFINS" name="aliq_cofins" id="aliq_cofins">
+            </div>  
+
+            <div class="form-group">
+                <label for="first-name">Valor Aprox. Tributos (Lei 12.741/12)</label>
+                <input type="text" class="form-control" placeholder="Valor Aprox. Tributos" name="valor_aprox_tributos" id="valor_aprox_tributos">
+            </div>   
 
             <div class="clearfix"></div>
             <button type="submit" class="btn btn-info btn-lg btn-responsive" id="search"> <span class="glyphicon glyphicon-send"></span> Emitir</button>
