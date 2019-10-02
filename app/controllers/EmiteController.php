@@ -52,6 +52,45 @@ class EmiteController extends ControllerBase
         }
     }
 
+    private function ibge_sigla($ibge)
+    {
+        switch ($ibge) {
+            case 11: return "RO";
+            case 12: return "AC";
+            case 13: return "AM";
+            case 14: return "RR";
+            case 15: return "PA";
+            case 16: return "AP";
+            case 17: return "TO";
+            
+            case 21: return "MA";
+            case 22: return "PI";
+            case 23: return "CE";
+            case 24: return "RN";
+            case 25: return "PB";
+            case 26: return "PE";
+            case 27: return "AL";
+            case 28: return "SE";
+            case 29: return "BA";
+
+            case 31: return "MG";
+            case 32: return "ES";
+            case 33: return "RJ";
+            case 35: return "SP";
+
+            case 41: return "PR";
+            case 42: return "SC";
+            case 43: return "RS";
+
+            case 50: return "MS";
+            case 51: return "MT";
+            case 52: return "GO";
+            case 53: return "DF";
+
+            default: throw new Exception('IBGE da UF inválido.');
+        }
+    }
+
 
     private function get_xml()
     {
@@ -251,6 +290,41 @@ class EmiteController extends ControllerBase
         $nfe->tagdetPag($std);
 
         return $nfe->getXML();
+    }
+
+    private function compoeChaveAcesso43($cUF, $ano, $mes, $cnpj, $serie, $numero, $tpEmi, $cNF )
+    {
+        return $cUF . $ano . $mes . $cnpj . "55" . $serie . $numero . $tpEmi . $cNF;
+    }
+
+    private function calculaDV($cUF, $ano, $mes, $cnpj, $serie, $numero, $tpEmi, $cNF)
+    {
+        return calculaDV(compoeChaveAcesso43($cUF, $ano, $mes, $cnpj, $serie, $numero, $tpEmi, $cNF));
+    }
+
+    private function calculaDV($chave43)
+    {
+        $mult = array(2, 3, 4, 5, 6, 7, 8, 9);
+        $count = 42;
+        $soma = 0;
+        while ($count >= 0) 
+        {
+            for ($i = 0; $i < count($mult) && $count >= 0; $i++) 
+            {
+                $num = (int) substr($chave43, $count, 1);
+                $peso = (int) $mult[$i];
+                $soma += $num * $peso;
+                $count--;
+            }
+        }
+        $resto = $soma % 11;
+        
+        if ($resto == '0' || $resto == '1') 
+            $cDV = 0;
+        else 
+            $cDV = 11 - $resto;
+        
+        return (string) $cDV;
     }
 
     private function gera_json()
